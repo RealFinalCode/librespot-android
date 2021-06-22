@@ -18,6 +18,14 @@
     <string name="paused">Paused!</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
+    <string name="search">Search</string>
     <string name="skippedNext">Skipped to next!</string>
     <string name="skippedPrev">Skipped to previous!</string>
+
+<!--    Search Activity -->
+
+    <string name="search_bar_hint">Song, Artist, Playlist…</string>
+    <string name="add_to_queue">Add to Queue</string>
+    <string name="add_to_playlist">Add to Playlist</string>
+    <string name="copy_link">Copy Song Url</string>
 </resources>
