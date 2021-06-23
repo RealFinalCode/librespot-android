@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.spotify.connectstate.Connect;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Range;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,12 +27,15 @@ import java.util.concurrent.Executors;
 
 import dev.nutral.librespot.android.databinding.ActivityMainBinding;
 import dev.nutral.librespot.android.runnables.PlayRunnable;
+import dev.nutral.librespot.android.runnables.TogglePlaybackRunnable;
 import dev.nutral.librespot.android.search.SearchActivity;
 import dev.nutral.librespot.android.sink.AndroidSinkOutput;
 import dev.nutral.librespot.android.runnables.callbacks.SimpleCallback;
 import dev.nutral.librespot.android.utils.Utils;
+import xyz.gianlu.librespot.audio.MetadataWrapper;
 import xyz.gianlu.librespot.core.Session;
 import xyz.gianlu.librespot.mercury.MercuryClient;
+import xyz.gianlu.librespot.metadata.PlayableId;
 import xyz.gianlu.librespot.player.Player;
 import xyz.gianlu.librespot.player.PlayerConfiguration;
 
@@ -65,21 +69,17 @@ public final class MainActivity extends AppCompatActivity {
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
         });
 
-        binding.resume.setOnClickListener((v) ->
-                executorService.execute(new ResumeRunnable(() ->
-                        Toast.makeText(this, R.string.resumed, Toast.LENGTH_SHORT).show())));
 
-        binding.pause.setOnClickListener((v) ->
-                executorService.execute(new PauseRunnable(() ->
-                        Toast.makeText(this, R.string.paused, Toast.LENGTH_SHORT).show())));
+        binding.togglePlayback.setOnClickListener(v -> {
+            executorService.execute(new TogglePlaybackRunnable());
+            Log.d(TAG, "onCreate: " + LibrespotHolder.getPlayer().currentMetadata().duration());
+        });
 
         binding.prev.setOnClickListener((v) ->
-                executorService.execute(new PrevRunnable(() ->
-                        Toast.makeText(this, R.string.skippedPrev, Toast.LENGTH_SHORT).show())));
+                executorService.execute(new PrevRunnable(null)));
 
         binding.next.setOnClickListener((v) ->
-                executorService.execute(new NextRunnable(() ->
-                        Toast.makeText(this, R.string.skippedNext, Toast.LENGTH_SHORT).show())));
+                executorService.execute(new NextRunnable(null)));
 
         binding.search.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SearchActivity.class)));
 
@@ -89,6 +89,9 @@ public final class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, R.string.playerReady, Toast.LENGTH_SHORT).show();
                 binding.username.setText(username);
                 binding.playControls.setVisibility(View.VISIBLE);
+                binding.search.setVisibility(View.VISIBLE);
+                // For play/pause and stuff like that
+                LibrespotHolder.getPlayer().addEventsListener(new EventListener(MainActivity.this));
             }
 
             @Override
@@ -186,42 +189,6 @@ public final class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static class ResumeRunnable implements Runnable {
-        private final SimpleCallback callback;
-        private final Handler handler = new Handler(Looper.getMainLooper());
-
-        ResumeRunnable(@NotNull SimpleCallback callback) {
-            this.callback = callback;
-        }
-
-        @Override
-        public void run() {
-            Player player = LibrespotHolder.getPlayer();
-            if (player == null) return;
-
-            player.play();
-            handler.post(callback::done);
-        }
-    }
-
-    private static class PauseRunnable implements Runnable {
-        private final SimpleCallback callback;
-        private final Handler handler = new Handler(Looper.getMainLooper());
-
-        PauseRunnable(@NotNull SimpleCallback callback) {
-            this.callback = callback;
-        }
-
-        @Override
-        public void run() {
-            Player player = LibrespotHolder.getPlayer();
-            if (player == null) return;
-
-            player.pause();
-            handler.post(callback::done);
-        }
-    }
-
     private static class PrevRunnable implements Runnable {
         private final SimpleCallback callback;
         private final Handler handler = new Handler(Looper.getMainLooper());
@@ -236,6 +203,7 @@ public final class MainActivity extends AppCompatActivity {
             if (player == null) return;
 
             player.previous();
+            if (callback == null) return;
             handler.post(callback::done);
         }
     }
@@ -254,6 +222,7 @@ public final class MainActivity extends AppCompatActivity {
             if (player == null) return;
 
             player.next();
+            if (callback == null) return;
             handler.post(callback::done);
         }
     }

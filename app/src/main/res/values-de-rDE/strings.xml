@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Librespot</string>
+    <string name="username">Username</string>
+    <string name="password">Passwort</string>
+    <string name="login">Login</string>
+    <string name="loggedIn">Eingeloggt</string>
+    <string name="failedLoggingIn">Einloggen fehlgeschlagen</string>
+    <string name="playbackStarted">Wiedergabe gestarted</string>
+    <string name="failedStartingPlayback">Wiedergabe fehlgeschlagen</string>
+    <string name="logout">Ausloggen</string>
+    <string name="playerReady">Player is bereit</string>
+    <string name="somethingWentWrong">Etwas ist schief gegangen</string>
+    <string name="search">Suchen</string>
+    <string name="search_bar_hint">Song(,Künstler, Playlist...)</string>
+    <string name="add_to_queue">Zur Warteschlange hinzufügen</string>
+    <string name="add_to_playlist">Zur Playlist hinzufügen</string>
+    <string name="copy_link">"Songlink kopieren "</string>
+</resources>
