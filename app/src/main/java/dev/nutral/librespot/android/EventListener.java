@@ -3,6 +3,8 @@ package dev.nutral.librespot.android;
 import android.app.Activity;
 import android.widget.ImageButton;
 
+import androidx.annotation.UiThread;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
@@ -29,16 +31,19 @@ public class EventListener implements Player.EventsListener {
 
     }
 
+    @UiThread
     @Override
     public void onPlaybackEnded(@NotNull Player player) {
         togglePlayback.setImageResource(android.R.drawable.ic_media_play);
     }
 
+    @UiThread
     @Override
     public void onPlaybackPaused(@NotNull Player player, long l) {
         togglePlayback.setImageResource(android.R.drawable.ic_media_play);
     }
 
+    @UiThread
     @Override
     public void onPlaybackResumed(@NotNull Player player, long l) {
         togglePlayback.setImageResource(android.R.drawable.ic_media_pause);
