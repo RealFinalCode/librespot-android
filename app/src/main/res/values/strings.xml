@@ -18,4 +18,6 @@
     <string name="add_to_queue">Add to Queue</string>
     <string name="add_to_playlist">Add to Playlist</string>
     <string name="copy_link">Copy Song Url</string>
+    <string name="music_playback_channel_name">Music Playback Info</string>
+    <string name="music_playback_info_description">Shows information about the current playback</string>
 </resources>

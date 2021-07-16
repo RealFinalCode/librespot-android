@@ -16,17 +16,19 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import dev.nutral.librespot.android.databinding.ActivityMainBinding;
-import dev.nutral.librespot.android.runnables.NextRunnable;
-import dev.nutral.librespot.android.runnables.PreviousRunnable;
+import dev.nutral.librespot.android.mediaSession.ActionType;
+import dev.nutral.librespot.android.mediaSession.MediaControlManager;
 import dev.nutral.librespot.android.runnables.SetupRunnable;
-import dev.nutral.librespot.android.runnables.TogglePlaybackRunnable;
 import dev.nutral.librespot.android.runnables.callbacks.SetupCallback;
 import dev.nutral.librespot.android.search.SearchActivity;
+import dev.nutral.librespot.android.utils.LibrespotHolder;
 import dev.nutral.librespot.android.utils.Utils;
 
 public final class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private static final ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+    private final MediaControlManager mediaControlManager = MediaControlManager.getInstance();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,14 +53,16 @@ public final class MainActivity extends AppCompatActivity {
         /*
             Playback Controls
          */
-        binding.togglePlayback.setOnClickListener(v -> executorService.execute(new TogglePlaybackRunnable()));
-        binding.prev.setOnClickListener(v -> executorService.execute(new PreviousRunnable()));
-        binding.next.setOnClickListener(v -> executorService.execute(new NextRunnable()));
+        binding.prev.setOnClickListener(v -> mediaControlManager.performAction(ActionType.SKIP_PREVIOUS));
+        binding.togglePlayback.setOnClickListener(v -> mediaControlManager.performAction(ActionType.PLAY_PAUSE));
+        binding.next.setOnClickListener(v -> mediaControlManager.performAction(ActionType.SKIP_NEXT));
 
         /*
             BottomNavigation
          */
         binding.search.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SearchActivity.class)));
+
+        mediaControlManager.createMediaSession(this);
 
         // Setup the Player
         executorService.submit(new SetupRunnable(credentialsFile, new SetupCallback() {
@@ -69,7 +73,7 @@ public final class MainActivity extends AppCompatActivity {
                 binding.username.setText(username);
                 toggleMenuVisibility(binding, true);
                 // For play/pause and stuff like that
-                LibrespotHolder.getPlayer().addEventsListener(new EventListener(MainActivity.this));
+                LibrespotHolder.getPlayer().addEventsListener(new EventListener(MainActivity.this, mediaControlManager.getMediaSession()));
             }
 
             @Override
@@ -102,6 +106,7 @@ public final class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mediaControlManager.releaseMediaSession();
         LibrespotHolder.clear();
     }
 }

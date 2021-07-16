@@ -1,4 +1,4 @@
-package dev.nutral.librespot.android;
+package dev.nutral.librespot.android.utils;
 
 import androidx.annotation.Nullable;
 

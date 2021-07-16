@@ -19,7 +19,7 @@ import com.google.gson.JsonObject;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import dev.nutral.librespot.android.LibrespotHolder;
+import dev.nutral.librespot.android.utils.LibrespotHolder;
 import dev.nutral.librespot.android.R;
 import dev.nutral.librespot.android.databinding.ActivitySearchBinding;
 import dev.nutral.librespot.android.runnables.PlayRunnable;

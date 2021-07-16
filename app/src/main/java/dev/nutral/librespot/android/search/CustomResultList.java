@@ -36,8 +36,8 @@ public class CustomResultList extends ArrayAdapter {
 
     private static final String TAG = CustomResultList.class.getSimpleName();
 
-    private Activity context;
-    private JsonArray results;
+    private final Activity context;
+    private final JsonArray results;
 
     public CustomResultList(@NonNull Activity context, JsonArray results) {
         super(context, R.layout.result_item,

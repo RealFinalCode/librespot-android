@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
-import dev.nutral.librespot.android.LibrespotHolder;
+import dev.nutral.librespot.android.utils.LibrespotHolder;
 import dev.nutral.librespot.android.runnables.callbacks.OneParameterCallback;
 import xyz.gianlu.librespot.core.SearchManager;
 import xyz.gianlu.librespot.core.Session;

@@ -5,7 +5,7 @@ import android.os.Looper;
 
 import org.jetbrains.annotations.NotNull;
 
-import dev.nutral.librespot.android.LibrespotHolder;
+import dev.nutral.librespot.android.utils.LibrespotHolder;
 import dev.nutral.librespot.android.runnables.callbacks.SimpleCallback;
 import xyz.gianlu.librespot.player.Player;
 

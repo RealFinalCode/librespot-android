@@ -13,8 +13,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Locale;
 
-import dev.nutral.librespot.android.LibrespotHolder;
-import dev.nutral.librespot.android.MainActivity;
+import dev.nutral.librespot.android.utils.LibrespotHolder;
 import dev.nutral.librespot.android.runnables.callbacks.SetupCallback;
 import dev.nutral.librespot.android.sink.AndroidSinkOutput;
 import xyz.gianlu.librespot.core.Session;

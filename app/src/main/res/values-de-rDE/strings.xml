@@ -16,4 +16,6 @@
     <string name="add_to_queue">Zur Warteschlange hinzufügen</string>
     <string name="add_to_playlist">Zur Playlist hinzufügen</string>
     <string name="copy_link">"Songlink kopieren "</string>
+    <string name="music_playback_info_description">Zeigt Infos über den aktuellen Song an</string>
+    <string name="music_playback_channel_name">Musikwiedergabe Info</string>
 </resources>
