@@ -3,14 +3,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 32
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 23
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -45,5 +43,5 @@ android {
 }
 
 dependencies {
-    implementation 'xyz.gianlu.librespot:librespot-decoder-api:1.6.1-SNAPSHOT'
+    implementation 'xyz.gianlu.librespot:librespot-decoder-api:1.6.2'
 }

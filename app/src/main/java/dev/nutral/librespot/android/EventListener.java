@@ -135,4 +135,14 @@ public class EventListener implements Player.EventsListener {
     public void onPanicState(@NotNull Player player) {
 
     }
+
+    @Override
+    public void onStartedLoading(@NotNull Player player) {
+
+    }
+
+    @Override
+    public void onFinishedLoading(@NotNull Player player) {
+
+    }
 }
