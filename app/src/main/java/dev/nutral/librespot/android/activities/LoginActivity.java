@@ -1,4 +1,4 @@
-package dev.nutral.librespot.android;
+package dev.nutral.librespot.android.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import dev.nutral.librespot.android.R;
 import dev.nutral.librespot.android.databinding.ActivityLoginBinding;
 import dev.nutral.librespot.android.runnables.LoginRunnable;
 import dev.nutral.librespot.android.runnables.callbacks.LoginCallback;

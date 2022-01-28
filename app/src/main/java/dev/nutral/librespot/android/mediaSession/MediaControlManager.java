@@ -96,7 +96,7 @@ public class MediaControlManager {
                     .setShowActionsInCompactView(0, 1, 2);
 
             Notification.Builder builder = new Notification.Builder(context, LibrespotApp.MUSIC_INFO_CHANNEL_ID)
-                    .addAction(new Notification.Action.Builder(Icon.createWithResource("", android.R.drawable.ic_media_previous), "Prev", PendingIntent.getBroadcast(context, 0, new Intent(context, ActionReceiver.class).putExtra("action_type", SKIP_PREVIOUS), 0)).build())
+                    .addAction(new Notification.Action.Builder(Icon.createWithResource("", android.R.drawable.ic_media_previous), "Prev", PendingIntent.getBroadcast(context, 0, new Intent(context, ActionReceiver.class).putExtra("action_type", SKIP_PREVIOUS), PendingIntent.FLAG_IMMUTABLE)).build())
                     .setStyle(mediaStyle)
                     .setVisibility(Notification.VISIBILITY_PUBLIC)
                     .setSmallIcon(R.drawable.ic_launcher_foreground)
@@ -111,11 +111,11 @@ public class MediaControlManager {
 
             // Play / Pause Action
             if(controller.getPlaybackState().getState() == PlaybackState.STATE_PLAYING) {
-                builder.addAction(new Notification.Action.Builder(Icon.createWithResource("", android.R.drawable.ic_media_pause), "Pause", PendingIntent.getBroadcast(context, 1, new Intent(context, ActionReceiver.class).putExtra("action_type", PLAY_PAUSE), 0)).build());
+                builder.addAction(new Notification.Action.Builder(Icon.createWithResource("", android.R.drawable.ic_media_pause), "Pause", PendingIntent.getBroadcast(context, 1, new Intent(context, ActionReceiver.class).putExtra("action_type", PLAY_PAUSE), PendingIntent.FLAG_IMMUTABLE)).build());
             } else {
-                builder.addAction(new Notification.Action.Builder(Icon.createWithResource("", android.R.drawable.ic_media_play), "Play", PendingIntent.getBroadcast(context, 2, new Intent(context, ActionReceiver.class).putExtra("action_type", PLAY_PAUSE), 0)).build());
+                builder.addAction(new Notification.Action.Builder(Icon.createWithResource("", android.R.drawable.ic_media_play), "Play", PendingIntent.getBroadcast(context, 2, new Intent(context, ActionReceiver.class).putExtra("action_type", PLAY_PAUSE), PendingIntent.FLAG_IMMUTABLE)).build());
             }
-            builder.addAction(new Notification.Action.Builder(Icon.createWithResource("", android.R.drawable.ic_media_next), "Next", PendingIntent.getBroadcast(context, 3, new Intent(context, ActionReceiver.class).putExtra("action_type", SKIP_NEXT), 0)).build());
+            builder.addAction(new Notification.Action.Builder(Icon.createWithResource("", android.R.drawable.ic_media_next), "Next", PendingIntent.getBroadcast(context, 3, new Intent(context, ActionReceiver.class).putExtra("action_type", SKIP_NEXT), PendingIntent.FLAG_IMMUTABLE)).build());
 
             // Album Art
             if(albumArt != null) {

@@ -1,4 +1,4 @@
-package dev.nutral.librespot.android;
+package dev.nutral.librespot.android.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,12 +15,14 @@ import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import dev.nutral.librespot.android.EventListener;
+import dev.nutral.librespot.android.R;
 import dev.nutral.librespot.android.databinding.ActivityMainBinding;
 import dev.nutral.librespot.android.mediaSession.ActionType;
 import dev.nutral.librespot.android.mediaSession.MediaControlManager;
 import dev.nutral.librespot.android.runnables.SetupRunnable;
 import dev.nutral.librespot.android.runnables.callbacks.SetupCallback;
-import dev.nutral.librespot.android.search.SearchActivity;
+import dev.nutral.librespot.android.activities.search.SearchActivity;
 import dev.nutral.librespot.android.utils.LibrespotHolder;
 import dev.nutral.librespot.android.utils.Utils;
 

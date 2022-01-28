@@ -3,7 +3,7 @@ This Repo is a Fork of [librespot-android](https://github.com/devgianlu/librespo
   - [x] Search for Songs
   - [x] Add Songs to Queue
   - [ ] Add Songs to Playlist
-  - [ ] Search for other Stuff than just Songs
+  - [X] Search for other Stuff than just Songs
   - [ ] Play Playlists
 
 # Why does this Project exists?

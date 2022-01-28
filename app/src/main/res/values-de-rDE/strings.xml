@@ -12,10 +12,19 @@
     <string name="playerReady">Player is bereit</string>
     <string name="somethingWentWrong">Etwas ist schief gegangen</string>
     <string name="search">Suchen</string>
-    <string name="search_bar_hint">Song(,Künstler, Playlist...)</string>
+    <string name="search_bar_hint">Song, Künstler, Playlist</string>
     <string name="add_to_queue">Zur Warteschlange hinzufügen</string>
     <string name="add_to_playlist">Zur Playlist hinzufügen</string>
     <string name="copy_link">"Songlink kopieren "</string>
     <string name="music_playback_info_description">Zeigt Infos über den aktuellen Song an</string>
     <string name="music_playback_channel_name">Musikwiedergabe Info</string>
+    <string name="search_activity_label">Suche</string>
+    <string name="search_category_best">Beste Ergebnisse</string>
+    <string name="search_category_tracks">Lieder</string>
+    <string name="search_category_playlists">Playlists</string>
+    <string name="search_category_album">Alben</string>
+    <string name="search_category_artist">Künstler*in</string>
+    <string name="search_category_podcast">Podcasts</string>
+    <string name="search_category_episodes">Episoden</string>
+    <string name="search_category_profiles">Profile</string>
 </resources>

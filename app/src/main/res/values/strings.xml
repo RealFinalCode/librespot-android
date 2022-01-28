@@ -14,10 +14,19 @@
 
 <!--    Search Activity -->
 
-    <string name="search_bar_hint">Song(, Artist, Playlist…)</string>
+    <string name="search_bar_hint">Song, Artist, Playlist</string>
     <string name="add_to_queue">Add to Queue</string>
     <string name="add_to_playlist">Add to Playlist</string>
     <string name="copy_link">Copy Song Url</string>
     <string name="music_playback_channel_name">Music Playback Info</string>
     <string name="music_playback_info_description">Shows information about the current playback</string>
+    <string name="search_activity_label">Search</string>
+    <string name="search_category_best">Best Result</string>
+    <string name="search_category_tracks">Songs</string>
+    <string name="search_category_playlists">Playlists</string>
+    <string name="search_category_album">Album</string>
+    <string name="search_category_artist">Artists</string>
+    <string name="search_category_podcast">Podcasts and Shows</string>
+    <string name="search_category_episodes">Episodes</string>
+    <string name="search_category_profiles">Profiles</string>
 </resources>

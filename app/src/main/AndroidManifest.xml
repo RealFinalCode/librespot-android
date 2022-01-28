@@ -13,9 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LibrespotAndroid"
         android:usesCleartextTraffic="true">
-        <activity android:name=".search.SearchActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.search.SearchActivity"
+            android:label="@string/search_activity_label"/>
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
