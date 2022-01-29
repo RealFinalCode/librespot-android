@@ -1,6 +1,5 @@
 package dev.nutral.librespot.android.activities.search;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +22,6 @@ import dev.nutral.librespot.android.utils.ImageManager;
 
 public class CustomResultList extends ArrayAdapter {
 
-    private static final String TAG = CustomResultList.class.getSimpleName();
-
     private final FragmentActivity context;
     private final JsonArray results;
     private final String type;
@@ -35,7 +32,6 @@ public class CustomResultList extends ArrayAdapter {
         this.context = context;
         this.results = resultObj.getAsJsonArray("resultArray");
         this.type = resultObj.get("type").getAsString();
-        Log.d(TAG, "getView: " + type + " -> " + results.get(0).getAsJsonObject().keySet());
     }
 
     @NonNull
@@ -53,9 +49,11 @@ public class CustomResultList extends ArrayAdapter {
 
         // Name
         name.setText(results.get(position).getAsJsonObject().get("name").getAsString());
+        name.setSelected(true);
         // SubText
         String subTextStr = getSubText(position, type);
         subText.setText(subTextStr);
+        subText.setSelected(true);
 
         if (!type.equals("profiles")) {
             // Reset Image to Set it again

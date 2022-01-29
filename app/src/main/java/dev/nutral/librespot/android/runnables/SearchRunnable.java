@@ -33,7 +33,7 @@ public class SearchRunnable implements Runnable {
         SearchManager searchManager = session.search();
 
         try {
-            JsonObject result = searchManager.request(new SearchManager.SearchRequest(query));
+            JsonObject result = searchManager.request(new SearchManager.SearchRequest(query).limit(20));
 
             handler.post(() -> callback.done(result));
         } catch (IOException e) {
