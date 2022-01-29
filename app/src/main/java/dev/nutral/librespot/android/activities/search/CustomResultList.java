@@ -1,8 +1,5 @@
 package dev.nutral.librespot.android.activities.search;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +15,11 @@ import androidx.fragment.app.FragmentActivity;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import java.io.InputStream;
-import java.util.HashMap;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import dev.nutral.librespot.android.R;
+import dev.nutral.librespot.android.utils.ImageManager;
 
 public class CustomResultList extends ArrayAdapter {
 
@@ -64,7 +60,7 @@ public class CustomResultList extends ArrayAdapter {
         if (!type.equals("profiles")) {
             // Reset Image to Set it again
             cover.setImageBitmap(null);
-            new DownloadImageTask(cover).execute(results.get(position).getAsJsonObject().get("image").getAsString());
+            ImageManager.loadBitmap(results.get(position).getAsJsonObject().get("image").getAsString(), cover);
         }
 
         return item;
@@ -88,41 +84,6 @@ public class CustomResultList extends ArrayAdapter {
         }
 
         return "";
-    }
-
-    // TODO: Use android app cache implementation
-    private static final HashMap<String, Bitmap> IMAGE_CACHE = new HashMap<>();
-
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        private final ImageView bmImage;
-
-        public DownloadImageTask(ImageView imageView) {
-            super();
-            this.bmImage = imageView;
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... strings) {
-            if (IMAGE_CACHE.containsKey(strings[0]))
-                return IMAGE_CACHE.get(strings[0]);
-
-            Bitmap bitmap = null;
-            try {
-                Log.d(TAG, "doInBackground: Image downloaded ->" + strings[0]);
-                InputStream in = new java.net.URL(strings[0]).openStream();
-                bitmap = BitmapFactory.decodeStream(in);
-                IMAGE_CACHE.put(strings[0], bitmap);
-            } catch (Exception e) {
-                Log.e(TAG, "doInBackground: ", e);
-                e.printStackTrace();
-            }
-
-            return bitmap;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
     }
 
 }

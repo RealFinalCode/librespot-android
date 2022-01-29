@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.os.Build;
 import android.util.Log;
 
+import dev.nutral.librespot.android.utils.ImageManager;
 import xyz.gianlu.librespot.audio.decoders.Decoders;
 import xyz.gianlu.librespot.audio.format.SuperAudioFormat;
 import dev.nutral.librespot.player.decoders.AndroidNativeDecoder;
@@ -41,5 +42,7 @@ public final class LibrespotApp extends Application {
         notificationChannel.setDescription(getResources().getString(R.string.music_playback_info_description));
         NotificationManager notificationManager = getSystemService(NotificationManager.class);
         notificationManager.createNotificationChannel(notificationChannel);
+        ImageManager.init(getApplicationContext());
+        Runtime.getRuntime().addShutdownHook(new Thread(ImageManager::close));
     }
 }
